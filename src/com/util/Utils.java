@@ -1,8 +1,9 @@
 package com.util;
 
 import com.company.TreeNode;
+import com.datastructure.ListNode;
+import com.datastructure.TreeNode;
 
-import javax.swing.plaf.basic.BasicListUI;
 import java.util.*;
 
 public class Utils {
