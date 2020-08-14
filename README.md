@@ -21,7 +21,7 @@ this is a basic algo repo.
 8.Sort:Qsort\BulkSort\MergeSort
 
 
-###RoadMap:
+### RoadMap:
 
 1.RMQ
 
