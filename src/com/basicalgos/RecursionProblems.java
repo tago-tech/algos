@@ -73,5 +73,70 @@ public class RecursionProblems {
     }
 
 
+    /**
+     * 给定一个整数数组  nums 和一个正整数 k，找出是否有可能把这个数组分成 k 个非空子集，其总和都相等。
+     * 暴力解法（回溯解法）
+     * 每个元素可被分为任意一个集合中
+     * 总共有K个集合
+     * 难点在于剪枝：
+     *     1.记录每个集合当前的总和，若超过肯定不满足条件
+     *     2.假设当前元素为 i ，前 i - 1 个元素被划分到的集合最大序号为 x , 对于 i 元素，划分到 i + 1 等价于划分到 i + 任意值;
+     *      (因为集合只是一个序号而已)
+     * */
+    public static boolean canPartitionKSubsets(int[] nums, int k) {
+        //异常检测 及 简单筛选
+        if (nums == null || nums.length < k) return false;
+        int sum = 0;
+        for (int x : nums) {
+            sum += x;
+        }
+        //不能够被整除,直接false
+        if (sum % k != 0) return false;
+        int n = nums.length;
+        //currents数组表示第k个集合中目前总和
+        int[] currents = new int[k];
+        //每个集合的理想值
+        int target = sum / k;
+        boolean success = dfs(nums,0,k,currents,target,-1);
+        return success;
+    }
+    /**
+     * 每个元素都有机会被划分到任意一个集合 with canPartitionKSubsets
+     * */
+    public static boolean dfs (int[] nums,int idx,int k,int[] currents,int target,int max) {
+        int n = nums.length;
+        //终止条件
+        if (idx >= n) {
+            //若发现有的集合元素不等于target则表示此情况不满足
+            for (int i = 0;i < k;i++) {
+                if (currents[i] != target) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        //将当前元素 IDX 划分到 i 集合
+        for (int i = 0;i < k;i++) {
+            //当前集合若和大于理想值则进行剪枝
+            if (currents[i] + nums[idx] > target) {
+                continue;
+            }
+            //在集合i中加入 i 元素进行回溯
+            currents[i] += nums[idx];
+            if (dfs(nums,idx + 1,k,currents,target,Math.max(max,i))) {
+                return true;
+            }
+            //从集合 i 中删除当前 idx 元素，为了便于下次分配集合
+            currents[i] -= nums[idx];
+            //max记录当前最大的集合序号，若超过这个最大值，后面的记录没有任何意义
+            //因为集合只是一个序号，要么把当前元素与之前的元素分到一个集合中，要么分到一个新的集合中。
+            //况且对于新的集合都是“陌生的”，都是等价的。
+            if (i > max) {
+                return false;
+            }
+        }
+        return false;
+    }
+
 
 }
