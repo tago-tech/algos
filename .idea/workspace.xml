@@ -20,12 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f18a21fc-b8e5-48b9-947d-babe608e1a17" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/basicalgos/DigitalsProblem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/basicalgos/GeometryProblems.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/basicalgos/SceneDesign.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/basicalgos/ArraysProblem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/basicalgos/ArraysProblem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/basicalgos/RecursionProblems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/basicalgos/RecursionProblems.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/basicalgos/StringsProblem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/basicalgos/StringsProblem.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
