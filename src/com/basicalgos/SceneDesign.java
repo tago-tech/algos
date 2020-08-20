@@ -72,4 +72,109 @@ public class SceneDesign {
         }
         return numsStack.pollFirst();
     }
+
+
+    /**
+     * 四则运算 + - * / ( ) _
+     * 将 中序表达式 转换成 逆波兰表达式
+     * rploish字符串存放逆波兰结果,操作数栈opsStack
+     *
+     * tips:
+     *  1.逆波兰表达式中数字之间要加入 空格 ，便于区分不同的数字划分;
+     *  2.
+     * */
+    public static int calculator (String s) {
+        //异常检测
+        if (s == null || s.length() == 0) {
+            return Integer.MIN_VALUE;
+        }
+        //初始化变量\数据清洗
+        int n = s.length();
+        //初始化上下文,栈空间
+        StringBuilder rploish = new StringBuilder("");
+
+        Stack<Character> opsStack = new Stack<>();
+
+        Stack<Integer> numsStack = new Stack<>();
+
+        for (int idx = 0;idx < n;idx++) {
+            char c = s.charAt(idx);
+            if (c == ' ') continue;
+            if (c <= '9' && c >= '0') {
+                //取出连续的数
+                int base = c - '0';
+                while (idx < n - 1 && s.charAt(idx + 1) >= '0' && s.charAt(idx + 1) <= '9') {
+                    base = base * 10 + (s.charAt(++idx) - '0');
+                }
+                rploish.append(base + " ");
+            }
+            else if (c == '(') {
+                opsStack.push(c);
+            }
+            else if (c == ')') {
+                //找到一段括弧,这段括弧里的操作符号放到 逆波兰式中
+                while (opsStack.peek() != '(') {
+                    rploish.append(opsStack.pop() + " ");
+                }
+                opsStack.pop();
+            }
+            //以下阶段主要是将 优先级 相等或者比自己更高优先级
+            else if (c == '+') {
+                while (!opsStack.isEmpty() && opsStack.peek() != '(') {
+                    rploish.append(opsStack.pop() + " ");
+                }
+                opsStack.push(c);
+            }
+            else if (c == '-') {
+                while (!opsStack.isEmpty() && opsStack.peek() != '(') {
+                    rploish.append(opsStack.pop() + " ");
+                }
+                opsStack.push(c);
+            }
+            else {
+                while (!opsStack.isEmpty() && (opsStack.peek() == '/' || opsStack.peek() == '*')  ) {
+                    rploish.append(opsStack.pop() + " ");
+                }
+                opsStack.push(c);
+            }
+        }
+
+        while (!opsStack.isEmpty()) {
+            rploish.append(opsStack.pop());
+        }
+        //对逆波兰表达式的计算
+        int m = rploish.length();
+        for (int i = 0;i < m;i++) {
+            char c = rploish.charAt(i);
+            if (c == ' ') {
+                continue;
+            }
+            if (c >= '0' && c <= '9') {
+                int base = c - '0';
+                while (i < m - 1 && rploish.charAt(i + 1) >= '0' && rploish.charAt(i + 1) <= '9') {
+                    base = base * 10 + (rploish.charAt(++i) - '0');
+                }
+                numsStack.push(base);
+            }
+            else {
+                //弹出两个操作数
+                int second = numsStack.pop();
+                int frist = numsStack.pop();
+                if (c == '+') {
+                    numsStack.push(frist + second);
+
+                }
+                else if (c == '-') {
+                    numsStack.push(frist - second);
+                }
+                else if (c == '/') {
+                    numsStack.push(frist / second);
+                }
+                else {
+                    numsStack.push(frist * second);
+                }
+            }
+        }
+        return numsStack.pop();
+    }
 }
