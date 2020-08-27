@@ -218,4 +218,76 @@ public class ArraysProblem {
         return left;
     }
 
+    /**
+     * 升序且等长数组的上中位数
+     * 数组等长且各自升序，上中位数
+     *
+     * 1 ，2 ，3
+     * 1~，2~，3~
+     * 若 2 < 2~ 则中位数应该在[2,3] 与 [1~,2~] 之间
+     * */
+    public static int getUMedium (int[] nums1,int[] nums2,int l1,int r1,int l2,int r2) {
+        //异常检测
+        if (nums1 == null || nums2 == null || r1 - l1 != r2 - l2) return Integer.MIN_VALUE;
+
+        int n = nums1.length , m = nums2.length;
+        while (l1 <= r1) {
+            int m1 = l1 + (r1 - l1) / 2;
+            int m2 = l2 + (r2 - l2) / 2;
+            //offset用来记录偏移量,奇偶长度带来的偏移不同。
+            int offset = ((r1 - l1 + 1) & 1) == 0 ? 1 : 0;
+            //当剩余一个元素，或相等时，直接返回
+            if (nums1[m1] == nums2[m2] || l1 == r1) {
+                return Math.min(nums1[m1],nums2[m2]);
+            }
+            else if (nums1[m1] < nums2[m2]) {
+                l1 = m1 + offset;
+                r2 = m2;
+            }
+            else {
+                //nums[m1] > nums2[m2]
+                r1 = m1;
+                l2 = m2 + offset;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 两个有序数组的第K个数
+     * tips:
+     * 1.数组不一定等长
+     * */
+    public static int findK (int[] nums1,int[] nums2,int k) {
+        //异常检测
+        if (nums1 == null || nums2 == null) return Integer.MIN_VALUE;
+        int[] loogest = nums1.length > nums2.length ? nums1 : nums2;
+        int[] shortest = nums1.length <= nums2.length ? nums1 : nums2;
+        int n = loogest.length , m = shortest.length;
+        //无效请求
+        if (k < 1 || k > n + m) {
+            return Integer.MIN_VALUE;
+        }
+        //若k < m ，则肯定为loog[0,k-1]与shortest[0,k-1]的上中位数
+        //因为两段总共具有 2k 个元素
+        if (k <= m) {
+            return getUMedium(loogest,shortest,0,k - 1,0,k - 1);
+        }
+        else if (k > n) {
+            if (shortest[k - n - 1] >= loogest[n - 1]) {
+                return shortest[k - n - 1];
+            }
+            if (loogest[k - m - 1] >= shortest[m - 1]) {
+                return loogest[k - m - 1];
+            }
+            return getUMedium(loogest,shortest,k - m,n - 1,k - n,m - 1);
+        }
+        else {
+            //k > m && k < n
+            if (loogest[k - m - 1] >= shortest[m - 1]) {
+                return loogest[k - m - 1];
+            }
+            return getUMedium(loogest,shortest,k - m,k - 1,0,m - 1);
+        }
+    }
 }
