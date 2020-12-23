@@ -290,4 +290,46 @@ public class ArraysProblem {
             return getUMedium(loogest,shortest,k - m,k - 1,0,m - 1);
         }
     }
+
+    /**
+     * 最具竞争力的子序列
+     */
+    public static int[] mostCompetitive(int[] nums, int k) {
+
+        if (nums == null || k < 0 || nums.length < k) return null;
+
+        int[] result = new int[k];
+
+        if (k == 0) return result;
+
+        int n = nums.length , index = 0;
+
+        LinkedList<Integer> queue = new LinkedList<>();
+
+        //init during [0,n-k).
+        for (int i = 0;i < n - k;i++) {
+
+            while (!queue.isEmpty() && nums[queue.peekLast()] > nums[i]) {
+
+                queue.pollLast();
+
+            }
+
+            queue.add(i);
+        }
+        //find min-value one by one.
+        for (int i = n - k;i < n;i++) {
+
+            while (!queue.isEmpty() && nums[queue.peekLast()] > nums[i]) {
+
+                queue.pollLast();
+
+            }
+
+            queue.add(i);
+
+            result[index++] = nums[queue.pollFirst()];
+        }
+        return result;
+    }
 }
