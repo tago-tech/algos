@@ -20,9 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f18a21fc-b8e5-48b9-947d-babe608e1a17" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/designer/FooBar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/designer/LFUCache.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/basicalgos/ArraysProblem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/basicalgos/ArraysProblem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/algos/com/basicalgos/ArraysProblem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/algos/com/basicalgos/ArraysProblem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/algos/com/datastructure/SkipList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/algos/com/datastructure/SkipList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/algos/com/designer/LRUCache.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/algos/com/designer/LRUCache.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/designer/LRUCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/designer/LRUCache.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -67,7 +70,33 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.LFUCache">
+    <configuration name="LFUCache" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.designer.LFUCache" />
+      <module name="algos" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.designer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LRUCache" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.designer.LRUCache" />
+      <module name="algos" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.designer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SkipList" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.datastructure.SkipList" />
       <module name="algos" />
@@ -83,6 +112,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.LFUCache" />
+        <item itemvalue="Application.LRUCache" />
         <item itemvalue="Application.SkipList" />
       </list>
     </recent_temporary>
