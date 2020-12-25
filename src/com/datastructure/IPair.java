@@ -21,4 +21,12 @@ public class IPair {
     public int hashCode() {
         return ("#" + this.x + "#" + this.y + "#").hashCode();
     }
+
+    @Override
+    public String toString() {
+        return "IPair{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
 }

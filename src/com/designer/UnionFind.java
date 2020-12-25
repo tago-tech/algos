@@ -3,8 +3,13 @@ package com.designer;
 import java.util.Stack;
 
 public class UnionFind {
-    public int[] fatherMap;
-    public int[] rankMap;
+
+    private int[] fatherMap;
+
+    private int[] rankMap;
+
+    private int size;
+
     //构造函数
     public UnionFind(int size) {
         // [0 , size - 1]
@@ -14,6 +19,7 @@ public class UnionFind {
             fatherMap[i] = i;
             rankMap[i] = 1;
         }
+        this.size = size;
     }
     //union
     public  void union(int e1,int e2) {
@@ -32,6 +38,8 @@ public class UnionFind {
             rankMap[big] += rankMap[small];
             fatherMap[small] = big;
             rankMap[small] = 0;
+
+            size--;
         }
     }
 
@@ -57,5 +65,10 @@ public class UnionFind {
     //获取质谱
     public int[] getRankMap() {
         return this.rankMap;
+    }
+
+    //size of Connected componentes.
+    public int size() {
+        return size;
     }
 }
