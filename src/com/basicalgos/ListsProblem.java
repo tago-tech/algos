@@ -78,4 +78,66 @@ public class ListsProblem {
         return proxyOfHead.next;
     }
 
+    /**
+     * 分发糖果
+     * 每个孩子至少分配到 1 个糖果。
+     * 评分更高的孩子必须比他两侧的邻位孩子获得更多的糖果。
+     * @param ratings
+     * @return
+     */
+    public static int candy(int[] ratings) {
+
+        if (ratings == null || ratings.length == 0) {
+            return 0;
+        }
+
+        int n = ratings.length;
+
+        int left = 0 , right = 0;
+
+        boolean on = true;
+
+        int sum = 0;
+
+        int i = 0;
+
+        while (i < n) {
+            if (on) {
+                left++;
+                //需要终止上坡过程
+                if (i == n - 1 || ratings[i] >= ratings[i + 1]) {
+                    on = false;
+                    right = 0;
+                    continue;
+                }
+                i++;
+            }
+            else {
+                right++;
+                //需要终止下坡过程
+                if (i == n - 1 || ratings[i] <= ratings[i + 1]) {
+                    sum += sumOfN(left) + sumOfN(right) - Math.min(left,right);
+                    right = 0;
+                    left = 0;
+                    on = true;
+                    if (i == n - 1) break;
+                    if (i < n - 1 && ratings[i] == ratings[i + 1]) i++;
+                    continue;
+                }
+                i++;
+            }
+        }
+
+        for (i = 1;i < n - 1;i++) {
+            if (ratings[i] < ratings[i - 1] && ratings[i] < ratings[i + 1]) {
+                sum -= 1;
+            }
+        }
+        return sum;
+    }
+
+    public static int sumOfN (int n) {
+        return n * (n + 1) / 2;
+    }
+
 }

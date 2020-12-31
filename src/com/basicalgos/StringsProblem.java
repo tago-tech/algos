@@ -1,7 +1,9 @@
 package com.basicalgos;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class StringsProblem {
 
@@ -62,6 +64,30 @@ public class StringsProblem {
         }
         return target;
     }
+
+    /**
+     * 第一个唯一字符
+     * 假定该字符串只包含小写字母。
+     * @param s
+     * @return
+     */
+    public int firstUniqChar(String s) {
+        if (s == null || s.length() <= 0) return -1;
+        int[] mapOfChar = new int[26];
+        for (char c : s.toCharArray()) {
+            mapOfChar[c - 'a'] += 1;
+        }
+        int index = 0;
+
+        for (char c : s.toCharArray()) {
+            if (mapOfChar[c - 'a'] == 1) {
+                break;
+            }
+            index++;
+        }
+        return index == s.length() ? -1 : index;
+    }
+
 
 
 }

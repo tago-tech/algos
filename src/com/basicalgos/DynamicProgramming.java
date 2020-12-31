@@ -55,4 +55,26 @@ public class DynamicProgramming {
 
         return s.substring(start,end + 1);
     }
+
+    /**
+     * 最小爬楼梯费用
+     * 简单动态规划
+     * @param cost
+     * @return
+     */
+    public int minCostClimbingStairs(int[] cost) {
+        if (cost == null || cost.length <= 0) return 0;
+        int n = cost.length;
+
+        int[] dp = new int[n];
+
+        dp[0] = cost[0];
+
+        dp[1] = cost[1];
+
+        for (int i = 1;i < n;i++) {
+            dp[i] = Math.min(i < 1 ? 0 : dp[i - 1],i < 2 ? 0 : dp[i - 2]) + cost[i];
+        }
+        return Math.min(dp[n - 1],n > 2 ? dp[n - 2] : Integer.MAX_VALUE);
+    }
 }
